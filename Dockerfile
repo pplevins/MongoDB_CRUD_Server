@@ -8,6 +8,5 @@ COPY services/data_loader ./app
 COPY requirements.txt requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-ENV MONGODB_URL="mongodb://localhost:27017"
 EXPOSE 8000
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
