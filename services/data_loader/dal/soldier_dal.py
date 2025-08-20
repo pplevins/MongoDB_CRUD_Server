@@ -1,3 +1,5 @@
+from unittest import skipIf
+
 from bson import ObjectId
 from pymongo import ReturnDocument
 
@@ -17,6 +19,7 @@ class SoldierDAL:
         soldier["id"] = result.inserted_id
         return soldier
 
+    # TODO: Add support for limit change, skip, and queries maybe.
     async def list(self, limit: int = 1000) -> list:
         """List all soldiers in the database."""
         return await self.collection.find().to_list(limit)
