@@ -1,2 +1,2 @@
-from .soldier import Soldier
+from .soldier_model import Soldier
 from .rank import Rank
