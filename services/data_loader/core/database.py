@@ -5,6 +5,7 @@ from pymongo import AsyncMongoClient
 from pymongo.server_api import ServerApi
 
 
+# TODO: Add documentation
 class Database:
     _db = None
     _client = None

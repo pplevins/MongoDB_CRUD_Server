@@ -8,6 +8,7 @@ class SoldierDAL:
     """Class to represent soldier's Data Layer, and implementing CRUD operations for soldier."""
 
     def __init__(self, db: Database):
+        """Constructor."""
         self.collection = db.get_soldiers_collection()
 
     async def create(self, soldier: dict) -> dict:
