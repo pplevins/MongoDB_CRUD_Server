@@ -1,26 +1,38 @@
+from bson import ObjectId
+from pymongo import ReturnDocument
+
+from services.data_loader.core import Database
+
+
 class SoldierDAL:
-    """Class to represent person's Data Layer, and implementing CRUD operations for people."""
+    """Class to represent soldier's Data Layer, and implementing CRUD operations for soldier."""
 
-    def __init__(self, conn_str=None):
-        """Constructor"""
-        pass
+    def __init__(self, db: Database):
+        self.collection = db.get_soldiers_collection()
 
-    def _connect(self):
-        """Connect to database."""
-        pass
+    async def create(self, soldier: dict) -> dict:
+        """Create a new soldier record in the database."""
+        result = await self.collection.insert_one(soldier)
+        soldier["_id"] = result.inserted_id
+        return soldier
 
-    def get_all_soldiers(self):
-        """Get all soldiers from the database."""
-        pass
+    async def list(self, limit: int = 1000) -> list:
+        """List all soldiers in the database."""
+        return await self.collection.find().to_list(limit)
 
-    def insert_soldier(self, soldier):
-        """Insert soldier into database."""
-        pass
+    async def get(self, soldier_id: str) -> dict | None:
+        """Get a soldier by its ID, return None if it doesn't exist."""
+        return await self.collection.find_one({"_id": ObjectId(soldier_id)})
 
-    def remove_soldier(self, soldier_id):
-        """Remove soldier from database."""
-        pass
+    async def delete(self, student_id: str) -> int:
+        """Delete a soldier by its ID, return 0 if it doesn't exist."""
+        result = await self.collection.delete_one({"_id": ObjectId(student_id)})
+        return result.deleted_count
 
-    def update_soldier(self, soldier_id, soldier):
-        """Update existed soldier in the database."""
-        pass
+    async def update(self, student_id: str, update_data: dict) -> dict | None:
+        """Update a soldier record in the database, return None if it doesn't exist."""
+        return await self.collection.find_one_and_update(
+            {"_id": ObjectId(student_id)},
+            {"$set": update_data},
+            return_document=ReturnDocument.AFTER,
+        )
