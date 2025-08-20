@@ -40,7 +40,7 @@ async def get_soldier(soldier_id: str):
 
 
 @router.put(
-    "/{id}",
+    "/{soldier_id}",
     response_description="Update a soldier",
     response_model=SoldierModel,
     response_model_by_alias=False,
@@ -50,7 +50,7 @@ async def update_soldier(soldier_id: str, soldier: UpdateSoldierModel = Body(...
 
 
 @router.delete(
-    "/{id}",
+    "/{soldier_id}",
     response_description="Delete a soldier",
     status_code=status.HTTP_204_NO_CONTENT,
 )
