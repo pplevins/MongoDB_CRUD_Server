@@ -1,6 +1,6 @@
 from rank import Rank
-from typing import Optional, List
-from pydantic import ConfigDict, BaseModel, Field, EmailStr
+from typing import Optional
+from pydantic import ConfigDict, BaseModel, Field
 from typing_extensions import Annotated
 from pydantic.functional_validators import BeforeValidator
 
