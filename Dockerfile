@@ -1,3 +1,7 @@
+# NOTE: Because of the change in the directory structure, and inserting all codebase to "app" directory,
+# make sure to change all the import from inside the project to fit to the new path.
+# for example: instead of "from core import Database" use "from app.core import Database", etc.
+
 FROM python:3.12-slim
 LABEL authors="pplevins & berale"
 WORKDIR /app

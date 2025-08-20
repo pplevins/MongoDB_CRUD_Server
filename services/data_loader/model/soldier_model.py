@@ -11,11 +11,14 @@ PyObjectId = Annotated[str, BeforeValidator(str)]
 
 
 class SoldierModel(BaseModel):
+    """Class to represent the soldier model used in the server and DB."""
     id: Optional[PyObjectId] = Field(alias="_id", default=None)
     first_name: str = Field(...)
     last_name: str = Field(...)
     phone_number: PhoneNumber = Field(...)
     rank: Rank = Field(...)
+
+    # A mapping dictionary for model representation in the API
     model_config = ConfigDict(
         populate_by_name=True,
         arbitrary_types_allowed=True,

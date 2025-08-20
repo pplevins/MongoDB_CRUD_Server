@@ -6,10 +6,16 @@ from pydantic_extra_types.phone_numbers import PhoneNumber
 
 
 class UpdateSoldierModel(BaseModel):
+    """
+    A special class to represent the soldier model with optional values for update.
+    Used only for updating soldier in the database, and ignoring `None` values.
+    """
     first_name: Optional[str] = None
     last_name: Optional[str] = None
     phone_number: Optional[PhoneNumber] = None
     rank: Optional[Rank] = None
+
+    # A mapping dictionary for model representation in the API
     model_config = ConfigDict(
         arbitrary_types_allowed=True,
         json_encoders={ObjectId: str},

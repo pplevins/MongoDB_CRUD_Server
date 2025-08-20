@@ -6,7 +6,13 @@ from model import SoldierModel, SoldierCollection, UpdateSoldierModel
 
 
 class SoldierService:
+    """
+    A service class for soldier's data layer that transforms the soldier model,
+    and delegates the data access responsibility to the DAL.
+    """
+
     def __init__(self, db: Database):
+        """Initialize the DAL."""
         self._dal = SoldierDAL(db)
 
     async def create(self, soldier: SoldierModel) -> dict:
