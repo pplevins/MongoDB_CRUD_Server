@@ -11,7 +11,7 @@ class SoldierService:
 
     async def create(self, soldier: SoldierModel) -> dict:
         """Create a new Soldier dump, passing the model to Dal."""
-        new_soldier = soldier.model_dump(by_alias=True, exclude=["id"])
+        new_soldier = soldier.model_dump(by_alias=True, exclude=set("id"))
         return await self._dal.create(new_soldier)
 
     async def list_soldiers(self) -> SoldierCollection:
