@@ -1,5 +1,3 @@
-from unittest import skipIf
-
 from bson import ObjectId
 from pymongo import ReturnDocument
 
