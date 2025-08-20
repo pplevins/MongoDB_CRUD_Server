@@ -4,6 +4,7 @@ from pydantic import ConfigDict, BaseModel, Field, EmailStr
 from typing_extensions import Annotated
 from pydantic.functional_validators import BeforeValidator
 
+# TODO add comment about this global variable
 PyObjectId = Annotated[str, BeforeValidator(str)]
 
 
