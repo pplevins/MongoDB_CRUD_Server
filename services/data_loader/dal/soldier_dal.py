@@ -1,7 +1,7 @@
 from bson import ObjectId
 from pymongo import ReturnDocument
 
-from services.data_loader.core import Database
+from core import Database
 
 
 class SoldierDAL:
@@ -14,7 +14,7 @@ class SoldierDAL:
     async def create(self, soldier: dict) -> dict:
         """Create a new soldier record in the database."""
         result = await self.collection.insert_one(soldier)
-        soldier["_id"] = result.inserted_id
+        soldier["id"] = result.inserted_id
         return soldier
 
     async def list(self, limit: int = 1000) -> list:

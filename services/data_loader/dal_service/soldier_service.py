@@ -1,8 +1,8 @@
 from fastapi import HTTPException
 
-from services.data_loader.core import Database
-from services.data_loader.dal import SoldierDAL
-from services.data_loader.model import SoldierModel, SoldierCollection, UpdateSoldierModel
+from core import Database
+from dal import SoldierDAL
+from model import SoldierModel, SoldierCollection, UpdateSoldierModel
 
 
 class SoldierService:
@@ -11,7 +11,7 @@ class SoldierService:
 
     async def create(self, soldier: SoldierModel) -> dict:
         """Create a new Soldier dump, passing the model to Dal."""
-        new_soldier = soldier.model_dump(by_alias=True, exclude=set("id"))
+        new_soldier = soldier.model_dump(by_alias=True, exclude=set("_id"), exclude_none=True)
         return await self._dal.create(new_soldier)
 
     async def list_soldiers(self) -> SoldierCollection:
