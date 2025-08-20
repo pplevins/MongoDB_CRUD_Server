@@ -4,10 +4,10 @@ from pydantic import ConfigDict, BaseModel, Field, EmailStr
 from typing_extensions import Annotated
 from pydantic.functional_validators import BeforeValidator
 
+PyObjectId = Annotated[str, BeforeValidator(str)]
+
 
 class SoldierModel(BaseModel):
-
-    PyObjectId = Annotated[str, BeforeValidator(str)]
     id: Optional[PyObjectId] = Field(alias="_id", default=None)
     first_name: str = Field(...)
     last_name: str = Field(...)
@@ -25,4 +25,3 @@ class SoldierModel(BaseModel):
             }
         },
     )
-
